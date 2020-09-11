@@ -1,0 +1,91 @@
+
+{% extends 'index.html'  %}
+
+{% block content %}
+
+    <section id="anchor-name" class="row bg-black">
+        <div class="container">
+            <div class="tittle wow fadeInUp">
+                <h2 style="color:white">DRILLER'S DASHBOARD</h2>
+                <h4 style="color:white">Perform your mud rheology analysis here</h4>
+                <br>
+            </div>
+            <form action="add" method="POST">
+                {% csrf_token %}
+                <div class="row">
+	                <div class="col-md-4">
+	                    <div class="card" style="background:#484848">
+	                        <div class="form-group form-floating-label">
+	                            <input id="inputFloatingLabel2" type="text" name="num1" class="form-control input-solid" required>
+	                            <label for="inputFloatingLabel2" class="placeholder">Viscometer reading @600rpm :</label>
+	                        </div>    
+	                        <div class="form-group form-floating-label">
+	                            <input id="inputFloatingLabel2" type="text" name="num2" class="form-control input-solid" required>
+	                            <label for="inputFloatingLabel2" class="placeholder">Viscometer reading @300rpm :</label>
+	                        </div>                           
+	                    </div>
+	                </div>
+	                <div class="col-md-4">
+	                    <div class="card" style="background:#484848">
+	                        <div class="form-group form-floating-label">
+	                            <input id="inputFloatingLabel2" type="text" name="num3" class="form-control input-solid" required>
+	                            <label for="inputFloatingLabel2" class="placeholder">Viscometer reading @200rpm :</label>
+	                        </div>    
+	                        <div class="form-group form-floating-label">
+	                            <input id="inputFloatingLabel2" type="text" name="num4" class="form-control input-solid" required>
+	                            <label for="inputFloatingLabel2" class="placeholder">Viscometer reading @100rpm :</label>
+	                        </div>                           
+	                    </div>
+	                </div>  
+	                <div class="col-md-4">
+	                    <div class="card" style="background:#484848">
+	                        <div class="form-group form-floating-label">
+	                            <input id="inputFloatingLabel2" type="text" name="num5" class="form-control input-solid" required>
+	                            <label for="inputFloatingLabel2" class="placeholder">Viscometer reading @6rpm :</label>
+	                        </div>    
+	                        <div class="form-group form-floating-label">
+	                            <input id="inputFloatingLabel2" type="text" name="num6" class="form-control input-solid" required>
+	                            <label for="inputFloatingLabel2" class="placeholder">Viscometer reading @3rpm :</label>
+	                        </div>                          
+	                    </div>     
+	                </div>               	                      
+                </div> 
+                <div class="row">
+	                <div class="col-md-4">
+	                    <div class="card" style="background:#484848">
+	                        <div class="form-group form-floating-label">
+	                            <input id="inputFloatingLabel2" type="text" name="num5" class="form-control input-solid" required>
+	                            <label for="inputFloatingLabel2" class="placeholder">Downhole Temperature [F] :</label>
+	                        </div>    
+	                        <div class="form-group form-floating-label">
+	                            <input id="inputFloatingLabel2" type="text" name="num6" class="form-control input-solid" required>
+	                            <label for="inputFloatingLabel2" class="placeholder">Downhole Presure [psi] :</label>
+	                        </div>                          
+	                    </div>     
+	                </div>   
+	                <div class="col-md-4">
+	                    <div class="card" style="background:#484848">
+	                        <div class="form-group form-floating-label">
+	                            <input id="inputFloatingLabel2" type="text" name="num5" class="form-control input-solid" required>
+	                            <label for="inputFloatingLabel2" class="placeholder">Oil Based Mud</label>
+	                        </div>    
+	                        <div class="form-group form-floating-label">
+	                            <input id="inputFloatingLabel2" type="text" name="num6" class="form-control input-solid" required>
+	                            <label for="inputFloatingLabel2" class="placeholder">Water Based Mud</label>
+	                        </div>                          
+	                    </div>     
+	                </div> 	                              	
+                	<div class="col-md-4">
+                 		<input type="submit" name="">               		
+                	</div>
+                	<div class="col-md-4">
+				        <div style="color: white">
+				        	Result : {{ result }}
+				        </div>                     		
+                	</div>
+                </div>       
+            </form>            
+        </div>             
+    </section>
+
+{% endblock %}

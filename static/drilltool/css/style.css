@@ -12,6 +12,7 @@ This files contents are outlined below.
 	1. Variables
 	2. Prefix
 	3. header
+  3a. Form
 	4. Slider
     5. Builder
     6. About
@@ -431,6 +432,66 @@ a:focus, a:hover, .btn:focus, .btn:hover, button:focus, button:hover {
 }
 
 /* header area 2 */
+
+
+/*------- Form Area ----------*/
+.form-group, .form-check {
+  margin-bottom: 0;
+  padding: 10px; }
+
+.form-group label, .form-check label {
+  margin-bottom: .5rem;
+  color: #495057;
+  font-weight: 600;
+  font-size: 1rem;
+  white-space: nowrap; }
+
+.card {
+  border-radius: 5px;
+  background-color: #ffffff;
+  margin-bottom: 30px;
+  -webkit-box-shadow: 2px 6px 15px 0px rgba(69, 65, 78, 0.1);
+  -moz-box-shadow: 2px 6px 15px 0px rgba(69, 65, 78, 0.1);
+  box-shadow: 2px 6px 15px 0px rgba(69, 65, 78, 0.1);
+  border: 0px; }
+
+.form-floating-label {
+  position: relative; }
+  .form-floating-label .placeholder {
+    position: absolute;
+    padding: .375rem .75rem;
+    transition: all .2s;
+    opacity: 0.8;
+    margin-bottom: 0 !important;
+    font-size: 14px !important;
+    font-weight: 400;
+    top: 12px; }
+  .form-floating-label .form-control:focus + .placeholder, .form-floating-label .form-control:valid + .placeholder, .form-floating-label .form-control.filled + .placeholder {
+    font-size: 85% !important;
+    transform: translate3d(0, -10px, 0);
+    top: 0;
+    opacity: 1;
+    padding: .375rem 0 .75rem;
+    font-weight: 600; }
+  .form-floating-label .form-control.filled + .placeholder {
+    color: #1572E8 !important; }
+  .form-floating-label .form-control ::-webkit-input-placeholder {
+    color: transparent; }
+  .form-floating-label .form-control :-moz-placeholder {
+    color: transparent; }
+  .form-floating-label .form-control ::-moz-placeholder {
+    color: transparent; }
+  .form-floating-label .form-control :-ms-input-placeholder {
+    color: transparent; }
+  .form-floating-label .input-border-bottom + .placeholder {
+    padding: .375rem 0 .75rem; }
+
+.bg-black {
+  border-radius: 5px;
+  background-color: #272727;
+}
+
+/* -----------End of Form Area --------*/
 /*--------------------------------------------------*/
 /* slider_area */
 .slider_area .slider_inner .camera_caption {
@@ -591,6 +652,8 @@ a:focus, a:hover, .btn:focus, .btn:hover, button:focus, button:hover {
 .banner_area .breadcrumb li a.active {
   color: #f6b60b;
 }
+
+
 
 /* End Banner Area */
 /*--------------------------------------------------*/
