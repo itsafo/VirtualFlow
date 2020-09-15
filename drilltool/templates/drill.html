@@ -81,11 +81,108 @@
                 	<div class="col-md-4">
 				        <div style="color: white">
 				        	Result : {{ result }}
+				        	Model : {{ model }}
 				        </div>                     		
                 	</div>
+		            <div class="col-md-6">
+		                <div class="card  bg-black">
+		                    <div class="card-header">
+		                        <div class="card-title" style="color: white">Rheology Visualization:</div>
+		                    </div>
+		                    <div class="card-body">
+		                        <div class="chart-container">
+		                            <canvas id="multipleLineChart" height="400"></canvas>
+		                        </div>
+		                    </div>
+		                </div>
+		            </div>                	
                 </div>       
             </form>            
         </div>             
     </section>
-
 {% endblock %}
+
+{% block javascripts %}
+	<script>
+		var multipleLineChart = document.getElementById('multipleLineChart').getContext('2d');
+		var myMultipleLineChart = new Chart(multipleLineChart, {
+			type: 'line',
+			data: {
+				labels: [{% for shear_rate in SR %}"{{ shear_rate }}",{% endfor %}],
+				datasets: [{
+					label: "Shear stress",
+					borderColor: "#1d7af3",
+					pointBorderColor: "#FFF",
+					pointBackgroundColor: "#1d7af3",
+					pointBorderWidth: 2,
+					pointHoverRadius: 4,
+					pointHoverBorderWidth: 1,
+					pointRadius: 4,
+					backgroundColor: 'transparent',
+					fill: true,
+					borderWidth: 2,
+					data: [{% for shear_stess in S %}{{ shear_stess }},{% endfor %}]
+				},{
+					label: "Bingham",
+					borderColor: "#59d05d",
+					pointBorderColor: "#FFF",
+					pointBackgroundColor: "#59d05d",
+					pointBorderWidth: 2,
+					pointHoverRadius: 4,
+					pointHoverBorderWidth: 1,
+					pointRadius: 4,
+					backgroundColor: 'transparent',
+					fill: true,
+					borderWidth: 2,
+					data: [{% for bingham in BP %}{{ bingham }},{% endfor %}]
+				}, {
+					label: "Power",
+					borderColor: "#f3545d",
+					pointBorderColor: "#FFF",
+					pointBackgroundColor: "#f3545d",
+					pointBorderWidth: 2,
+					pointHoverRadius: 4,
+					pointHoverBorderWidth: 1,
+					pointRadius: 4,
+					backgroundColor: 'transparent',
+					fill: true,
+					borderWidth: 2,
+					data: [{% for power in PL %}{{ power }},{% endfor %}]
+				}, {
+					label: "Herchel",
+					borderColor: "#cccc33",
+					pointBorderColor: "#FFF",
+					pointBackgroundColor: "#cccc33",
+					pointBorderWidth: 2,
+					pointHoverRadius: 4,
+					pointHoverBorderWidth: 1,
+					pointRadius: 4,
+					backgroundColor: 'transparent',
+					fill: true,
+					borderWidth: 2,
+					data: [{% for herchel in YP %}{{ herchel }},{% endfor %}]
+				}
+				]
+			},
+			options : {
+				responsive: true, 
+				maintainAspectRatio: false,
+				legend: {
+					position: 'top',
+				},
+				tooltips: {
+					bodySpacing: 4,
+					mode:"nearest",
+					intersect: 0,
+					position:"nearest",
+					xPadding:10,
+					yPadding:10,
+					caretPadding:10
+				},
+				layout:{
+					padding:{left:15,right:15,top:15,bottom:15}
+				}
+			}
+		});
+	</script>
+{% endblock javascripts %}		
