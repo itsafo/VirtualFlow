@@ -10,79 +10,52 @@
                 <h4 style="color:white">Perform your mud rheology analysis here</h4>
                 <br>
             </div>
-            <form action="add" method="POST">
+            <form action="rheology" method="POST">
                 {% csrf_token %}
                 <div class="row">
-	                <div class="col-md-4">
-	                    <div class="card" style="background:#484848">
-	                        <div class="form-group form-floating-label">
-	                            <input id="inputFloatingLabel2" type="text" name="num1" class="form-control input-solid" required>
-	                            <label for="inputFloatingLabel2" class="placeholder">Viscometer reading @600rpm :</label>
-	                        </div>    
-	                        <div class="form-group form-floating-label">
-	                            <input id="inputFloatingLabel2" type="text" name="num2" class="form-control input-solid" required>
-	                            <label for="inputFloatingLabel2" class="placeholder">Viscometer reading @300rpm :</label>
-	                        </div>                           
-	                    </div>
-	                </div>
-	                <div class="col-md-4">
-	                    <div class="card" style="background:#484848">
-	                        <div class="form-group form-floating-label">
-	                            <input id="inputFloatingLabel2" type="text" name="num3" class="form-control input-solid" required>
-	                            <label for="inputFloatingLabel2" class="placeholder">Viscometer reading @200rpm :</label>
-	                        </div>    
-	                        <div class="form-group form-floating-label">
-	                            <input id="inputFloatingLabel2" type="text" name="num4" class="form-control input-solid" required>
-	                            <label for="inputFloatingLabel2" class="placeholder">Viscometer reading @100rpm :</label>
-	                        </div>                           
-	                    </div>
-	                </div>  
-	                <div class="col-md-4">
-	                    <div class="card" style="background:#484848">
-	                        <div class="form-group form-floating-label">
-	                            <input id="inputFloatingLabel2" type="text" name="num5" class="form-control input-solid" required>
-	                            <label for="inputFloatingLabel2" class="placeholder">Viscometer reading @6rpm :</label>
-	                        </div>    
-	                        <div class="form-group form-floating-label">
-	                            <input id="inputFloatingLabel2" type="text" name="num6" class="form-control input-solid" required>
-	                            <label for="inputFloatingLabel2" class="placeholder">Viscometer reading @3rpm :</label>
-	                        </div>                          
-	                    </div>     
-	                </div>               	                      
-                </div> 
-                <div class="row">
-	                <div class="col-md-4">
-	                    <div class="card" style="background:#484848">
-	                        <div class="form-group form-floating-label">
-	                            <input id="inputFloatingLabel2" type="text" name="num5" class="form-control input-solid" required>
-	                            <label for="inputFloatingLabel2" class="placeholder">Downhole Temperature [F] :</label>
-	                        </div>    
-	                        <div class="form-group form-floating-label">
-	                            <input id="inputFloatingLabel2" type="text" name="num6" class="form-control input-solid" required>
-	                            <label for="inputFloatingLabel2" class="placeholder">Downhole Presure [psi] :</label>
-	                        </div>                          
-	                    </div>     
-	                </div>   
-	                <div class="col-md-4">
-	                    <div class="card" style="background:#484848">
-	                        <div class="form-group form-floating-label">
-	                            <input id="inputFloatingLabel2" type="text" name="num5" class="form-control input-solid" required>
-	                            <label for="inputFloatingLabel2" class="placeholder">Oil Based Mud</label>
-	                        </div>    
-	                        <div class="form-group form-floating-label">
-	                            <input id="inputFloatingLabel2" type="text" name="num6" class="form-control input-solid" required>
-	                            <label for="inputFloatingLabel2" class="placeholder">Water Based Mud</label>
-	                        </div>                          
-	                    </div>     
-	                </div> 	                              	
-                	<div class="col-md-4">
-                 		<input type="submit" name="">               		
-                	</div>
-                	<div class="col-md-4">
-				        <div style="color: white">
-				        	Result : {{ result }}
+                	<div class="col-md-4"  style="color: white">
+				        <div>
+				        	Result : {{ result }} | 
 				        	Model : {{ model }}
-				        </div>                     		
+				        	
+				        	Total Annular Pressure Loss:
+		                    <label class="btn btn-success">{{ tap }} psi</label> 	
+				        </div>
+				        <br>  
+				        <div>
+				        	Total Internal Pressure Loss:
+		                    <label class="btn btn-success">{{ tip }} psi</label>	
+				        </div>
+				        <br>   
+				        <div>
+				        	Parasitic Loss:
+		                    <label class="btn btn-success">{{ tpl }} psi</label>	
+				        </div>
+				        <br> 				         
+				        <div>
+				        	Hydraulic HP Pump Pressure:
+		                    <label class="btn btn-success">{{ tpph }} psi</label>	
+				        </div>  
+				        <br>
+				        <div>
+				        	Hydraulics Bit Size (1/32 in):
+		                    <label class="btn btn-success">{{ hhpbs }}</label>	
+				        </div> 	
+				        <br>			        
+				        <div>
+				        	Jet Impact Pump Pressure:
+		                    <label class="btn btn-success">{{ tppj }} psi</label>	
+				        </div>
+				        <br>  
+				        <div>
+				        	Jet Impact Bit Size (1/32 in):
+		                    <label class="btn btn-success">{{ jifbs }}</label>	
+				        </div> 
+				        <br> 
+				        <div>
+				        	Equivalent Circulating Density:
+		                    <label class="btn btn-success">{{ ecd }} ppg</label>	
+				        </div>            		
                 	</div>
 		            <div class="col-md-6">
 		                <div class="card  bg-black">
@@ -95,7 +68,10 @@
 		                        </div>
 		                    </div>
 		                </div>
-		            </div>                	
+		            </div> 
+                   <div class="nav nav-pills">
+                        <a class="wow fadeInUp animated" data-wow-delay="1s" href="{% url 'home' %}">Go back to mud/well data</a>
+                   </div>	                           	
                 </div>       
             </form>            
         </div>             
