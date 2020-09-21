@@ -12,6 +12,10 @@ def index(request):
     # Define your context variable, then render
     return render(request, "index.html", {})
 
+def ref(request):
+    # One good old style of programming functions
+    # Define your context variable, then render
+    return render(request, "ref.html", {})
 
 # +++++++++++++++ CALCULATION FUNCTIONS ++++++++++++++
 def drill(request):
