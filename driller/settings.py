@@ -25,7 +25,7 @@ SECRET_KEY = '#q9j3y)12$(t#9nnaz(gj4!h=t+(!(pdc9vtz29n%j(hd(9bm)'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', 'drilltech.herokuapp.com']
+ALLOWED_HOSTS = ['localhost', 'virtualflow.herokuapp.com']
 
 
 # Application definition
