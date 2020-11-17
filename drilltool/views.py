@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from .forms import ReinforcementForm
 import math
 from sklearn.metrics import mean_squared_error, r2_score
 # , get_object_or_404, redirect
@@ -16,6 +17,11 @@ def ref(request):
     # One good old style of programming functions
     # Define your context variable, then render
     return render(request, "ref.html", {})
+
+def blog(request):
+    # One good old style of programming functions
+    # Define your context variable, then render
+    return render(request, "blog-index.html", {})   
 
 # +++++++++++++++ CALCULATION FUNCTIONS ++++++++++++++
 def drill(request):
@@ -281,3 +287,1374 @@ def drill(request):
     	'BP':BP0, 'PL':PL0, 'YP':YP0, 's':x, 'ecd':ECD, 'tpl':TPL, 'tip':TIP, 'tap':TAP,
     	'hhpbs':HHPBS, 'jifbs':JIFBS, 'tpph':TPPH, 'tppj':TPPJ})
 
+
+def BRF(request):
+    # One good old style of programming functions
+    # Define your context variable, then render
+
+    if request.method == 'POST':
+        # Pass the form data to the form class
+        details = ReinforcementForm(request.POST)
+
+        # In the 'form' class the clean function 
+        # is defined, if all the data is correct 
+        # as per the clean function, it returns true 
+        if details.is_valid():       
+            db = float(request.POST['bnpd'])
+            dh = float(request.POST['hnpd'])
+            c = float(request.POST['ch'])
+
+            # ===Coding for header pipe thickness table===
+            h_thick = float(request.POST['h_thick'])
+            # NPS 1/2
+            if dh  == 0.125:
+                dh = 0.405
+                if h_thick == 1 or h_thick  == 2:
+                    th = 0.035
+                elif h_thick == 3 or h_thick  == 4 or h_thick  == 5:
+                    th = 0.049
+                elif h_thick == 6:
+                    th = 0.057
+                elif h_thick == 7 or h_thick  == 8 or h_thick  == 16:
+                    th = 0.068*0.875
+                elif h_thick == 10 or h_thick  == 11 or h_thick  == 17:
+                    th = 0.095
+                th = th * 0.875
+            # NPS 1/4
+            if dh  == 0.25:
+                dh = 0.54
+                if h_thick == 1 or h_thick  == 2:
+                    th = 0.049
+                elif h_thick == 3 or h_thick  == 4 or h_thick  == 5:
+                    th = 0.065
+                elif h_thick == 6:
+                    th = 0.073
+                elif h_thick == 7 or h_thick  == 8 or h_thick  == 16:
+                    th = 0.088*0.875
+                elif h_thick == 10 or h_thick  == 11 or h_thick  == 17:
+                    th = 0.119
+                th = th * 0.875
+            # NPS 3/8
+            if dh  == 0.375:
+                dh = 0.675
+                if h_thick == 1 or h_thick  == 2:
+                    th = 0.049
+                elif h_thick == 3 or h_thick  == 4 or h_thick  == 5:
+                    th = 0.065
+                elif h_thick == 6:
+                    th = 0.073
+                elif h_thick == 7 or h_thick  == 8 or h_thick  == 16:
+                    th = 0.091*0.875
+                elif h_thick == 10 or h_thick  == 11 or h_thick  == 17:
+                    th = 0.126
+                th = th * 0.875
+            # NPS 1/2
+            if dh  == 0.5:
+                dh = 0.84
+                if h_thick == 1 or h_thick  == 2:
+                    th = 0.065
+                elif h_thick == 3 or h_thick  == 4 or h_thick  == 5:
+                    th = 0.083
+                elif h_thick == 6:
+                    th = 0.095
+                elif h_thick == 7 or h_thick  == 8 or h_thick  == 16:
+                    th = 0.109
+                elif h_thick == 10 or h_thick  == 11 or h_thick  == 17:
+                    th = 0.147
+                elif h_thick == 15:
+                    th = 0.188
+                elif h_thick == 18:
+                    th = 0.294
+                th = th * 0.875
+            # NPS 3/4
+            if dh  == 0.75:
+                dh = 1.05
+                if h_thick == 1 or h_thick  == 2:
+                    th = 0.065
+                elif h_thick == 3 or h_thick  == 4 or h_thick  == 5:
+                    th = 0.083
+                elif h_thick == 6:
+                    th = 0.095
+                elif h_thick == 7 or h_thick  == 8 or h_thick  == 16:
+                    th = 0.113
+                elif h_thick == 10 or h_thick  == 11 or h_thick  == 17:
+                    th = 0.154
+                elif h_thick == 15:
+                    th = 0.219
+                elif h_thick == 18:
+                    th = 0.308
+                th = th * 0.875
+            # NPS 1
+            if dh  == 1:
+                dh = 1.315
+                if h_thick == 1 or h_thick  == 2:
+                    th = 0.065
+                elif h_thick == 3 or h_thick  == 4 or h_thick  == 5:
+                    th = 0.109
+                elif h_thick == 6:
+                    th = 0.114
+                elif h_thick == 7 or h_thick  == 8 or h_thick  == 16:
+                    th = 0.133
+                elif h_thick == 10 or h_thick  == 11 or h_thick  == 17:
+                    th = 0.179
+                elif h_thick == 15:
+                    th = 0.250
+                elif h_thick == 18:
+                    th = 0.358
+                th = th * 0.875
+            # NPS 1 1/4
+            if dh  == 1.125:
+                dh = 1.66
+                if h_thick == 1 or h_thick  == 2:
+                    th = 0.065
+                elif h_thick == 3 or h_thick  == 4 or h_thick  == 5:
+                    th = 0.109
+                elif h_thick == 6:
+                    th = 0.117
+                elif h_thick == 7 or h_thick  == 8 or h_thick  == 16:
+                    th = 0.140
+                elif h_thick == 10 or h_thick  == 11 or h_thick  == 17:
+                    th = 0.191
+                elif h_thick == 15:
+                    th = 0.250
+                elif h_thick == 18:
+                    th = 0.382
+                th = th * 0.875
+            # NPS 1 1/2
+            if dh  == 1.5:
+                dh = 1.9
+                if h_thick == 1 or h_thick  == 2:
+                    th = 0.065
+                elif h_thick == 3 or h_thick  == 4 or h_thick  == 5:
+                    th = 0.109
+                elif h_thick == 6:
+                    th = 0.125
+                elif h_thick == 7 or h_thick  == 8 or h_thick  == 16:
+                    th = 0.145
+                elif h_thick == 10 or h_thick  == 11 or h_thick  == 17:
+                    th = 0.200
+                elif h_thick == 15:
+                    th = 0.281
+                elif h_thick == 18:
+                    th = 0.4
+                th = th * 0.875
+            # NPS 2
+            if dh  == 2:
+                dh = 2.375
+                if h_thick == 1 or h_thick  == 2:
+                    th = 0.065
+                elif h_thick == 3 or h_thick  == 4 or h_thick  == 5:
+                    th = 0.109
+                elif h_thick == 6:
+                    th = 0.125
+                elif h_thick == 7 or h_thick  == 8 or h_thick  == 16:
+                    th = 0.154
+                elif h_thick == 10 or h_thick  == 11 or h_thick  == 17:
+                    th = 0.218
+                elif h_thick == 15:
+                    th = 0.344
+                elif h_thick == 18:
+                    th = 0.436
+                th = th * 0.875
+            # NPS 2 1/2
+            if dh  == 2.5:
+                dh = 2.875
+                if h_thick == 1 or h_thick  == 2:
+                    th = 0.083
+                elif h_thick == 3 or h_thick  == 4 or h_thick  == 5:
+                    th = 0.12
+                elif h_thick == 6:
+                    th = 0.188
+                elif h_thick == 7 or h_thick  == 8 or h_thick  == 16:
+                    th = 0.203
+                elif h_thick == 10 or h_thick  == 11 or h_thick  == 17:
+                    th = 0.276
+                elif h_thick == 13:
+                    th = 0.3
+                elif h_thick == 15:
+                    th = 0.375
+                elif h_thick == 18:
+                    th = 0.552
+                th = th * 0.875
+            # NPS 3
+            if dh  == 3:
+                dh = 3.5
+                if h_thick == 1 or h_thick  == 2:
+                    th = 0.083
+                elif h_thick == 3 or h_thick  == 4 or h_thick  == 5:
+                    th = 0.12
+                elif h_thick == 6:
+                    th = 0.188
+                elif h_thick == 7 or h_thick  == 8 or h_thick  == 16:
+                    th = 0.216
+                elif h_thick == 10 or h_thick  == 11 or h_thick  == 17:
+                    th = 0.3
+                elif h_thick == 13:
+                    th = 0.35
+                elif h_thick == 15:
+                    th = 0.438
+                elif h_thick == 18:
+                    th = 0.6
+                th = th * 0.875
+            # NPS 3 1/2
+            if dh  == 3.5:
+                dh = 4
+                if h_thick == 1 or h_thick  == 2:
+                    th = 0.083
+                elif h_thick == 3 or h_thick  == 4 or h_thick  == 5:
+                    th = 0.12
+                elif h_thick == 6:
+                    th = 0.188
+                elif h_thick == 7 or h_thick  == 8 or h_thick  == 16:
+                    th = 0.226
+                elif h_thick == 10 or h_thick  == 11 or h_thick  == 17:
+                    th = 0.318
+                elif h_thick == 18:
+                    th = 0.636
+                th = th * 0.875
+            # NPS 4
+            if dh  == 4:
+                dh = 4.5
+                if h_thick == 1 or h_thick  == 2:
+                    th = 0.083
+                elif h_thick == 3 or h_thick  == 4:
+                    th = 0.12
+                elif h_thick == 6:
+                    th = 0.188
+                elif h_thick == 7 or h_thick  == 8 or h_thick  == 16:
+                    th = 0.237
+                elif h_thick == 10 or h_thick  == 11 or h_thick  == 17:
+                    th = 0.337
+                elif h_thick == 13:
+                    th = 0.437
+                elif h_thick == 15:
+                    th = 0.531
+                elif h_thick == 18:
+                    th = 0.674
+                th = th * 0.875
+            # NPS 4 1/2
+            if dh  == 4.5:
+                dh = 5
+                if h_thick == 7 or h_thick  == 8 or h_thick  == 16:
+                    th = 0.247
+                elif h_thick == 10 or h_thick  == 11 or h_thick  == 17:
+                    th = 0.355
+                elif h_thick == 18:
+                    th = 0.71
+                th = th * 0.875
+            # NPS 5
+            if dh  == 5:
+                dh = 5.563
+                if h_thick == 1 or h_thick  == 2:
+                    th = 0.109
+                elif h_thick == 3 or h_thick  == 4:
+                    th = 0.134
+                elif h_thick == 7 or h_thick  == 8 or h_thick  == 16:
+                    th = 0.258
+                elif h_thick == 10 or h_thick  == 11 or h_thick  == 17:
+                    th = 0.375
+                elif h_thick == 13:
+                    th = 0.5
+                elif h_thick == 15:
+                    th = 0.625
+                elif h_thick == 18:
+                    th = 0.75
+                th = th * 0.875
+            # NPS 6
+            if dh  == 6:
+                dh = 6.625
+                if h_thick == 1 or h_thick  == 2:
+                    th = 0.109
+                elif h_thick == 3 or h_thick  == 4:
+                    th = 0.134
+                elif h_thick == 7 or h_thick  == 8 or h_thick  == 16:
+                    th = 0.280
+                elif h_thick == 10 or h_thick  == 11 or h_thick  == 17:
+                    th = 0.432
+                elif h_thick == 13:
+                    th = 0.562
+                elif h_thick == 15:
+                    th = 0.719
+                elif h_thick == 18:
+                    th = 0.864
+                th = th * 0.875
+            # NPS 7
+            if dh  == 7:
+                dh = 7.625
+                if h_thick == 7 or h_thick  == 8 or h_thick  == 16:
+                    th = 0.301
+                elif h_thick == 10 or h_thick  == 11 or h_thick  == 17:
+                    th = 0.5
+                elif h_thick == 18:
+                    th = 0.875
+                th = th * 0.875
+            # NPS 8
+            if dh  == 8:
+                dh = 8.625
+                if h_thick == 1 or h_thick  == 2:
+                    th = 0.109
+                elif h_thick == 3 or h_thick  == 4:
+                    th = 0.148
+                elif h_thick == 5:
+                    th = 0.250
+                elif h_thick == 6:
+                    th = 0.277
+                elif h_thick == 7 or h_thick  == 8 or h_thick  == 16:
+                    th = 0.322
+                elif h_thick == 9:
+                    th = 0.406
+                elif h_thick == 10 or h_thick  == 11 or h_thick  == 17:
+                    th = 0.5
+                elif h_thick == 12:
+                    th = 0.593
+                elif h_thick == 13:
+                    th = 0.719
+                elif h_thick == 14:
+                    th = 0.812
+                elif h_thick == 15:
+                    th = 0.906
+                elif h_thick == 18:
+                    th = 0.875
+                th = th * 0.875
+            # NPS 9
+            if dh  == 9:
+                dh = 9.625
+                if h_thick == 7 or h_thick  == 8 or h_thick  == 16:
+                    th = 0.342
+                elif h_thick == 10 or h_thick  == 11 or h_thick  == 17:
+                    th = 0.5
+                th = th * 0.875
+            # NPS 10
+            if dh  == 10:
+                dh = 10.75
+                if h_thick == 1 or h_thick  == 2:
+                    th = 0.134
+                elif h_thick == 3 or h_thick  == 4:
+                    th = 0.165
+                elif h_thick == 5:
+                    th = 0.250
+                elif h_thick == 6:
+                    th = 0.307
+                elif h_thick == 7 or h_thick  == 8 or h_thick  == 16:
+                    th = 0.365
+                elif h_thick == 9:
+                    th = 0.5
+                elif h_thick == 10:
+                    th = 0.594
+                elif h_thick  == 11 or h_thick  == 17:
+                    th = 0.5
+                elif h_thick == 12:
+                    th = 0.718
+                elif h_thick == 13:
+                    th = 0.843
+                elif h_thick == 14:
+                    th = 1
+                elif h_thick == 15:
+                    th = 1.125
+                th = th * 0.875
+            # NPS 10
+            if dh  == 12:
+                dh = 12.75
+                if h_thick == 1 or h_thick  == 2:
+                    th = 0.156
+                elif h_thick == 3 or h_thick  == 4:
+                    th = 0.180
+                elif h_thick == 5:
+                    th = 0.250
+                elif h_thick == 6:
+                    th = 0.330
+                elif h_thick == 7:
+                    th = 0.406
+                elif h_thick  == 8 or h_thick  == 16:
+                    th = 0.375
+                elif h_thick == 9:
+                    th = 0.562
+                elif h_thick == 10:
+                    th = 0.687
+                elif h_thick  == 11 or h_thick  == 17:
+                    th = 0.5
+                elif h_thick == 12:
+                    th = 0.843
+                elif h_thick == 13:
+                    th = 1
+                elif h_thick == 14:
+                    th = 1.125
+                elif h_thick == 15:
+                    th = 1.312
+                th = th * 0.875
+            # NPS 14
+            if dh  == 14:
+                dh = 14
+                if h_thick == 1 or h_thick  == 2:
+                    th = 0.156
+                elif h_thick == 3 or h_thick  == 4:
+                    th = 0.250
+                elif h_thick == 5:
+                    th = 0.312
+                elif h_thick == 6:
+                    th = 0.375
+                elif h_thick == 7:
+                    th = 0.437
+                elif h_thick  == 8 or h_thick  == 16:
+                    th = 0.375
+                elif h_thick == 9:
+                    th = 0.593
+                elif h_thick == 10:
+                    th = 0.750
+                elif h_thick  == 11 or h_thick  == 17:
+                    th = 0.5
+                elif h_thick == 12:
+                    th = 0.937
+                elif h_thick == 13:
+                    th = 1.093
+                elif h_thick == 14:
+                    th = 1.25
+                elif h_thick == 15:
+                    th = 1.406
+                th = th * 0.875
+            # NPS 16
+            if dh  == 16:
+                dh = 16
+                if h_thick == 1 or h_thick  == 2:
+                    th = 0.165
+                elif h_thick == 3 or h_thick  == 4:
+                    th = 0.250
+                elif h_thick == 5:
+                    th = 0.312
+                elif h_thick == 6:
+                    th = 0.375
+                elif h_thick == 7:
+                    th = 0.5
+                elif h_thick  == 8 or h_thick  == 16:
+                    th = 0.375
+                elif h_thick == 9:
+                    th = 0.656
+                elif h_thick == 10:
+                    th = 0.843
+                elif h_thick  == 11 or h_thick  == 17:
+                    th = 0.5
+                elif h_thick == 12:
+                    th = 1.031
+                elif h_thick == 13:
+                    th = 1.218
+                elif h_thick == 14:
+                    th = 1.437
+                elif h_thick == 15:
+                    th = 1.594
+                th = th * 0.875
+            # NPS 18
+            if dh  == 18:
+                dh = 18
+                if h_thick == 1 or h_thick  == 2:
+                    th = 0.165
+                elif h_thick == 3 or h_thick  == 4:
+                    th = 0.250
+                elif h_thick == 5:
+                    th = 0.312
+                elif h_thick == 6:
+                    th = 0.437
+                elif h_thick == 7:
+                    th = 0.562
+                elif h_thick  == 8 or h_thick  == 16:
+                    th = 0.375
+                elif h_thick == 9:
+                    th = 0.75
+                elif h_thick == 10:
+                    th = 0.927
+                elif h_thick  == 11 or h_thick  == 17:
+                    th = 0.5
+                elif h_thick == 12:
+                    th = 1.156
+                elif h_thick == 13:
+                    th = 1.375
+                elif h_thick == 14:
+                    th = 1.562
+                elif h_thick == 15:
+                    th = 1.781
+                th = th * 0.875
+            # NPS 20
+            if dh  == 20:
+                dh = 20
+                if h_thick == 1 or h_thick  == 2:
+                    th = 0.188
+                elif h_thick == 3 or h_thick  == 4:
+                    th = 0.250
+                elif h_thick == 5:
+                    th = 0.375
+                elif h_thick == 6:
+                    th = 0.5
+                elif h_thick == 7:
+                    th = 0.593
+                elif h_thick  == 8 or h_thick  == 16:
+                    th = 0.375
+                elif h_thick == 9:
+                    th = 0.812
+                elif h_thick == 10:
+                    th = 1.031
+                elif h_thick  == 11 or h_thick  == 17:
+                    th = 0.5
+                elif h_thick == 12:
+                    th = 1.28
+                elif h_thick == 13:
+                    th = 1.5
+                elif h_thick == 14:
+                    th = 1.75
+                elif h_thick == 15:
+                    th = 1.968
+                th = th * 0.875
+            # NPS 22
+            if dh  == 22:
+                dh = 22
+                if h_thick == 1 or h_thick  == 2:
+                    th = 0.188
+                elif h_thick == 3 or h_thick  == 4:
+                    th = 0.250
+                elif h_thick == 5:
+                    th = 0.375
+                elif h_thick == 6:
+                    th = 0.5
+                elif h_thick  == 8 or h_thick  == 16:
+                    th = 0.375
+                elif h_thick == 9:
+                    th = 0.875
+                elif h_thick == 10:
+                    th = 1.125
+                elif h_thick  == 11 or h_thick  == 17:
+                    th = 0.5
+                elif h_thick == 12:
+                    th = 1.375
+                elif h_thick == 13:
+                    th = 1.625
+                elif h_thick == 14:
+                    th = 1.875
+                elif h_thick == 15:
+                    th = 2.125
+                th = th * 0.875
+            # NPS 24
+            if dh  == 24:
+                dh = 24
+                if h_thick == 1 or h_thick  == 2:
+                    th = 0.218
+                elif h_thick == 3 or h_thick  == 4:
+                    th = 0.250
+                elif h_thick == 5:
+                    th = 0.375
+                elif h_thick == 6:
+                    th = 0.562
+                elif h_thick  == 7:
+                    th = 0.687
+                elif h_thick  == 8 or h_thick  == 16:
+                    th = 0.375
+                elif h_thick == 9:
+                    th = 0.968
+                elif h_thick == 10:
+                    th = 1.218
+                elif h_thick  == 11 or h_thick  == 17:
+                    th = 0.5
+                elif h_thick == 12:
+                    th = 1.531
+                elif h_thick == 13:
+                    th = 1.812
+                elif h_thick == 14:
+                    th = 2.062
+                elif h_thick == 15:
+                    th = 2.343
+                th = th * 0.875
+            # NPS 26
+            if dh  == 26:
+                dh = 26
+                if h_thick == 3 or h_thick  == 4:
+                    th = 0.312
+                elif h_thick  == 8 or h_thick  == 16:
+                    th = 0.375
+                elif h_thick  == 11 or h_thick  == 17:
+                    th = 0.5
+                th = th * 0.875
+            # NPS 28
+            if dh  == 28:
+                dh = 28
+                if h_thick == 3 or h_thick  == 4:
+                    th = 0.312
+                elif h_thick == 6:
+                    th = 0.625
+                elif h_thick  == 8 or h_thick  == 16:
+                    th = 0.375
+                elif h_thick  == 11 or h_thick  == 17:
+                    th = 0.5
+                th = th * 0.875
+            # NPS 30
+            if dh  == 30:
+                dh = 30
+                if h_thick == 1 or h_thick  == 2:
+                    th = 0.250
+                elif h_thick == 3 or h_thick  == 4:
+                    th = 0.312
+                elif h_thick == 6:
+                    th = 0.625
+                elif h_thick  == 8 or h_thick  == 16:
+                    th = 0.375
+                elif h_thick  == 11 or h_thick  == 17:
+                    th = 0.5
+                th = th * 0.875
+            # NPS 32
+            if dh  == 32:
+                dh = 32
+                if h_thick == 3 or h_thick  == 4:
+                    th = 0.312
+                elif h_thick == 6:
+                    th = 0.625
+                elif h_thick == 7:
+                    th = 0.688
+                elif h_thick  == 8 or h_thick  == 16:
+                    th = 0.375
+                elif h_thick  == 11 or h_thick  == 17:
+                    th = 0.5
+                th = th * 0.875
+            # NPS 34
+            if dh  == 34:
+                dh = 34
+                if h_thick == 3 or h_thick  == 4:
+                    th = 0.312
+                elif h_thick == 6:
+                    th = 0.625
+                elif h_thick == 7:
+                    th = 0.688
+                elif h_thick  == 8 or h_thick  == 16:
+                    th = 0.375
+                elif h_thick  == 11 or h_thick  == 17:
+                    th = 0.5
+                th = th * 0.875
+            # NPS 36
+            if dh  == 36:
+                dh = 36
+                if h_thick == 3 or h_thick  == 4:
+                    th = 0.312
+                elif h_thick  == 8 or h_thick  == 16:
+                    th = 0.375
+                elif h_thick  == 11 or h_thick  == 17:
+                    th = 0.5
+                th = th * 0.875
+            # NPS 40
+            if dh  >= 40:
+                if h_thick == 16:
+                    th = 0.375
+                elif h_thick == 17:
+                    th = 0.5
+                elif h_thick == 18:
+                    th = 1
+                th = th * 0.875
+
+
+            # ===Coding for branch pipe thickness table===
+            b_thick = float(request.POST['b_thick'])
+            # NPS 1/2
+            if db  == 0.125:
+                db = 0.405
+                if b_thick == 1 or b_thick  == 2:
+                    Tb = 0.035
+                elif b_thick == 3 or b_thick  == 4 or b_thick  == 5:
+                    Tb = 0.049
+                elif b_thick == 6:
+                    Tb = 0.057
+                elif b_thick == 7 or b_thick  == 8 or b_thick  == 16:
+                    Tb = 0.068*0.875
+                elif b_thick == 10 or b_thick  == 11 or b_thick  == 17:
+                    Tb = 0.095
+                Tb = Tb * 0.875
+            # NPS 1/4
+            if db  == 0.25:
+                db = 0.54
+                if b_thick == 1 or b_thick  == 2:
+                    Tb = 0.049
+                elif b_thick == 3 or b_thick  == 4 or b_thick  == 5:
+                    Tb = 0.065
+                elif b_thick == 6:
+                    Tb = 0.073
+                elif b_thick == 7 or b_thick  == 8 or b_thick  == 16:
+                    Tb = 0.088*0.875
+                elif b_thick == 10 or b_thick  == 11 or b_thick  == 17:
+                    Tb = 0.119
+                Tb = Tb * 0.875
+            # NPS 3/8
+            if db  == 0.375:
+                db = 0.675
+                if b_thick == 1 or b_thick  == 2:
+                    Tb = 0.049
+                elif b_thick == 3 or b_thick  == 4 or b_thick  == 5:
+                    Tb = 0.065
+                elif b_thick == 6:
+                    Tb = 0.073
+                elif b_thick == 7 or b_thick  == 8 or b_thick  == 16:
+                    Tb = 0.091*0.875
+                elif b_thick == 10 or b_thick  == 11 or b_thick  == 17:
+                    Tb = 0.126
+                Tb = Tb * 0.875
+            # NPS 1/2
+            if db  == 0.5:
+                db = 0.84
+                if b_thick == 1 or b_thick  == 2:
+                    Tb = 0.065
+                elif b_thick == 3 or b_thick  == 4 or b_thick  == 5:
+                    Tb = 0.083
+                elif b_thick == 6:
+                    Tb = 0.095
+                elif b_thick == 7 or b_thick  == 8 or b_thick  == 16:
+                    Tb = 0.109
+                elif b_thick == 10 or b_thick  == 11 or b_thick  == 17:
+                    Tb = 0.147
+                elif b_thick == 15:
+                    Tb = 0.188
+                elif b_thick == 18:
+                    Tb = 0.294
+                Tb = Tb * 0.875
+            # NPS 3/4
+            if db  == 0.75:
+                db = 1.05
+                if b_thick == 1 or b_thick  == 2:
+                    Tb = 0.065
+                elif b_thick == 3 or b_thick  == 4 or b_thick  == 5:
+                    Tb = 0.083
+                elif b_thick == 6:
+                    Tb = 0.095
+                elif b_thick == 7 or b_thick  == 8 or b_thick  == 16:
+                    Tb = 0.113
+                elif b_thick == 10 or b_thick  == 11 or b_thick  == 17:
+                    Tb = 0.154
+                elif b_thick == 15:
+                    Tb = 0.219
+                elif b_thick == 18:
+                    Tb = 0.308
+                Tb = Tb * 0.875
+            # NPS 1
+            if db  == 1:
+                db = 1.315
+                if b_thick == 1 or b_thick  == 2:
+                    Tb = 0.065
+                elif b_thick == 3 or b_thick  == 4 or b_thick  == 5:
+                    Tb = 0.109
+                elif b_thick == 6:
+                    Tb = 0.114
+                elif b_thick == 7 or b_thick  == 8 or b_thick  == 16:
+                    Tb = 0.133
+                elif b_thick == 10 or b_thick  == 11 or b_thick  == 17:
+                    Tb = 0.179
+                elif b_thick == 15:
+                    Tb = 0.250
+                elif b_thick == 18:
+                    Tb = 0.358
+                Tb = Tb * 0.875
+            # NPS 1 1/4
+            if db  == 1.125:
+                db = 1.66
+                if b_thick == 1 or b_thick  == 2:
+                    Tb = 0.065
+                elif b_thick == 3 or b_thick  == 4 or b_thick  == 5:
+                    Tb = 0.109
+                elif b_thick == 6:
+                    Tb = 0.117
+                elif b_thick == 7 or b_thick  == 8 or b_thick  == 16:
+                    Tb = 0.140
+                elif b_thick == 10 or b_thick  == 11 or b_thick  == 17:
+                    Tb = 0.191
+                elif b_thick == 15:
+                    Tb = 0.250
+                elif b_thick == 18:
+                    Tb = 0.382
+                Tb = Tb * 0.875
+            # NPS 1 1/2
+            if db  == 1.5:
+                db = 1.9
+                if b_thick == 1 or b_thick  == 2:
+                    Tb = 0.065
+                elif b_thick == 3 or b_thick  == 4 or b_thick  == 5:
+                    Tb = 0.109
+                elif b_thick == 6:
+                    Tb = 0.125
+                elif b_thick == 7 or b_thick  == 8 or b_thick  == 16:
+                    Tb = 0.145
+                elif b_thick == 10 or b_thick  == 11 or b_thick  == 17:
+                    Tb = 0.200
+                elif b_thick == 15:
+                    Tb = 0.281
+                elif b_thick == 18:
+                    Tb = 0.4
+                Tb = Tb * 0.875
+            # NPS 2
+            if db  == 2:
+                db = 2.375
+                if b_thick == 1 or b_thick  == 2:
+                    Tb = 0.065
+                elif b_thick == 3 or b_thick  == 4 or b_thick  == 5:
+                    Tb = 0.109
+                elif b_thick == 6:
+                    Tb = 0.125
+                elif b_thick == 7 or b_thick  == 8 or b_thick  == 16:
+                    Tb = 0.154
+                elif b_thick == 10 or b_thick  == 11 or b_thick  == 17:
+                    Tb = 0.218
+                elif b_thick == 15:
+                    Tb = 0.344
+                elif b_thick == 18:
+                    Tb = 0.436
+                Tb = Tb * 0.875
+            # NPS 2 1/2
+            if db  == 2.5:
+                db = 2.875
+                if b_thick == 1 or b_thick  == 2:
+                    Tb = 0.083
+                elif b_thick == 3 or b_thick  == 4 or b_thick  == 5:
+                    Tb = 0.12
+                elif b_thick == 6:
+                    Tb = 0.188
+                elif b_thick == 7 or b_thick  == 8 or b_thick  == 16:
+                    Tb = 0.203
+                elif b_thick == 10 or b_thick  == 11 or b_thick  == 17:
+                    Tb = 0.276
+                elif b_thick == 13:
+                    Tb = 0.3
+                elif b_thick == 15:
+                    Tb = 0.375
+                elif b_thick == 18:
+                    Tb = 0.552
+                Tb = Tb * 0.875
+            # NPS 3
+            if db  == 3:
+                db = 3.5
+                if b_thick == 1 or b_thick  == 2:
+                    Tb = 0.083
+                elif b_thick == 3 or b_thick  == 4 or b_thick  == 5:
+                    Tb = 0.12
+                elif b_thick == 6:
+                    Tb = 0.188
+                elif b_thick == 7 or b_thick  == 8 or b_thick  == 16:
+                    Tb = 0.216
+                elif b_thick == 10 or b_thick  == 11 or b_thick  == 17:
+                    Tb = 0.3
+                elif b_thick == 13:
+                    Tb = 0.35
+                elif b_thick == 15:
+                    Tb = 0.438
+                elif b_thick == 18:
+                    Tb = 0.6
+                Tb = Tb * 0.875
+            # NPS 3 1/2
+            if db  == 3.5:
+                db = 4
+                if b_thick == 1 or b_thick  == 2:
+                    Tb = 0.083
+                elif b_thick == 3 or b_thick  == 4 or b_thick  == 5:
+                    Tb = 0.12
+                elif b_thick == 6:
+                    Tb = 0.188
+                elif b_thick == 7 or b_thick  == 8 or b_thick  == 16:
+                    Tb = 0.226
+                elif b_thick == 10 or b_thick  == 11 or b_thick  == 17:
+                    Tb = 0.318
+                elif b_thick == 18:
+                    Tb = 0.636
+                Tb = Tb * 0.875
+            # NPS 4
+            if db  == 4:
+                db = 4.5
+                if b_thick == 1 or b_thick  == 2:
+                    Tb = 0.083
+                elif b_thick == 3 or b_thick  == 4:
+                    Tb = 0.12
+                elif b_thick == 6:
+                    Tb = 0.188
+                elif b_thick == 7 or b_thick  == 8 or b_thick  == 16:
+                    Tb = 0.237
+                elif b_thick == 10 or b_thick  == 11 or b_thick  == 17:
+                    Tb = 0.337
+                elif b_thick == 13:
+                    Tb = 0.437
+                elif b_thick == 15:
+                    Tb = 0.531
+                elif b_thick == 18:
+                    Tb = 0.674
+            
+            ## ERROR! NPS 4.5 and 5 takes the value of NPS 4
+            # NPS 4 1/2
+            if db  == 4.51:
+                db = 5
+                if b_thick == 7 or b_thick  == 8 or b_thick  == 16:
+                    Tb = 0.247
+                elif b_thick == 10 or b_thick  == 11 or b_thick  == 17:
+                    Tb = 0.355
+                elif b_thick == 18:
+                    Tb = 0.71
+                Tb = Tb * 0.875
+            # NPS 4 1/2
+            if db == 5.1:
+                db = 5.563
+                if b_thick == 1 or b_thick  == 2:
+                    Tb = 0.109
+                elif b_thick == 3 or b_thick  == 4:
+                    Tb = 0.134
+                elif b_thick == 7 or b_thick  == 8 or b_thick  == 16:
+                    Tb = 0.258
+                elif b_thick == 10 or b_thick  == 11 or b_thick  == 17:
+                    Tb = 0.375
+                elif b_thick == 13:
+                    Tb = 0.5
+                elif b_thick == 15:
+                    Tb = 0.625
+                elif b_thick == 18:
+                    Tb = 0.75
+                Tb = Tb * 0.875
+            ## EROR SECTION END ===============
+
+            # NPS 6
+            if db  == 6:
+                db = 6.625
+                if b_thick == 1 or b_thick  == 2:
+                    Tb = 0.109
+                elif b_thick == 3 or b_thick  == 4:
+                    Tb = 0.134
+                elif b_thick == 7 or b_thick  == 8 or b_thick  == 16:
+                    Tb = 0.280
+                elif b_thick == 10 or b_thick  == 11 or b_thick  == 17:
+                    Tb = 0.432
+                elif b_thick == 13:
+                    Tb = 0.562
+                elif b_thick == 15:
+                    Tb = 0.719
+                elif b_thick == 18:
+                    Tb = 0.864
+                Tb = Tb * 0.875
+            # NPS 7
+            if db  == 7:
+                db = 7.625
+                if b_thick == 7 or b_thick  == 8 or b_thick  == 16:
+                    Tb = 0.301
+                elif b_thick == 10 or b_thick  == 11 or b_thick  == 17:
+                    Tb = 0.5
+                elif b_thick == 18:
+                    Tb = 0.875
+                Tb = Tb * 0.875
+            # NPS 8
+            if db  == 8:
+                db = 8.625
+                if b_thick == 1 or b_thick  == 2:
+                    Tb = 0.109
+                elif b_thick == 3 or b_thick  == 4:
+                    Tb = 0.148
+                elif b_thick == 5:
+                    Tb = 0.250
+                elif b_thick == 6:
+                    Tb = 0.277
+                elif b_thick == 7 or b_thick  == 8 or b_thick  == 16:
+                    Tb = 0.322
+                elif b_thick == 9:
+                    Tb = 0.406
+                elif b_thick == 10 or b_thick  == 11 or b_thick  == 17:
+                    Tb = 0.5
+                elif b_thick == 12:
+                    Tb = 0.593
+                elif b_thick == 13:
+                    Tb = 0.719
+                elif b_thick == 14:
+                    Tb = 0.812
+                elif b_thick == 15:
+                    Tb = 0.906
+                elif b_thick == 18:
+                    Tb = 0.875
+                Tb = Tb * 0.875
+            # NPS 9
+            if db  == 9:
+                db = 9.625
+                if b_thick == 7 or b_thick  == 8 or b_thick  == 16:
+                    Tb = 0.342
+                elif b_thick == 10 or b_thick  == 11 or b_thick  == 17:
+                    Tb = 0.5
+                Tb = Tb * 0.875
+            # NPS 10
+            if db  == 10:
+                db = 10.75
+                if b_thick == 1 or b_thick  == 2:
+                    Tb = 0.134
+                elif b_thick == 3 or b_thick  == 4:
+                    Tb = 0.165
+                elif b_thick == 5:
+                    Tb = 0.250
+                elif b_thick == 6:
+                    Tb = 0.307
+                elif b_thick == 7 or b_thick  == 8 or b_thick  == 16:
+                    Tb = 0.365
+                elif b_thick == 9:
+                    Tb = 0.5
+                elif b_thick == 10:
+                    Tb = 0.594
+                elif b_thick  == 11 or b_thick  == 17:
+                    Tb = 0.5
+                elif b_thick == 12:
+                    Tb = 0.718
+                elif b_thick == 13:
+                    Tb = 0.843
+                elif b_thick == 14:
+                    Tb = 1
+                elif b_thick == 15:
+                    Tb = 1.125
+                Tb = Tb * 0.875
+            # NPS 10
+            if db  == 12:
+                db = 12.75
+                if b_thick == 1 or b_thick  == 2:
+                    Tb = 0.156
+                elif b_thick == 3 or b_thick  == 4:
+                    Tb = 0.180
+                elif b_thick == 5:
+                    Tb = 0.250
+                elif b_thick == 6:
+                    Tb = 0.330
+                elif b_thick == 7:
+                    Tb = 0.406
+                elif b_thick  == 8 or b_thick  == 16:
+                    Tb = 0.375
+                elif b_thick == 9:
+                    Tb = 0.562
+                elif b_thick == 10:
+                    Tb = 0.687
+                elif b_thick  == 11 or b_thick  == 17:
+                    Tb = 0.5
+                elif b_thick == 12:
+                    Tb = 0.843
+                elif b_thick == 13:
+                    Tb = 1
+                elif b_thick == 14:
+                    Tb = 1.125
+                elif b_thick == 15:
+                    Tb = 1.312
+                Tb = Tb * 0.875
+            # NPS 14
+            if db  == 14:
+                db = 14
+                if b_thick == 1 or b_thick  == 2:
+                    Tb = 0.156
+                elif b_thick == 3 or b_thick  == 4:
+                    Tb = 0.250
+                elif b_thick == 5:
+                    Tb = 0.312
+                elif b_thick == 6:
+                    Tb = 0.375
+                elif b_thick == 7:
+                    Tb = 0.437
+                elif b_thick  == 8 or b_thick  == 16:
+                    Tb = 0.375
+                elif b_thick == 9:
+                    Tb = 0.593
+                elif b_thick == 10:
+                    Tb = 0.750
+                elif b_thick  == 11 or b_thick  == 17:
+                    Tb = 0.5
+                elif b_thick == 12:
+                    Tb = 0.937
+                elif b_thick == 13:
+                    Tb = 1.093
+                elif b_thick == 14:
+                    Tb = 1.25
+                elif b_thick == 15:
+                    Tb = 1.406
+                Tb = Tb * 0.875
+            # NPS 16
+            if db  == 16:
+                db = 16
+                if b_thick == 1 or b_thick  == 2:
+                    Tb = 0.165
+                elif b_thick == 3 or b_thick  == 4:
+                    Tb = 0.250
+                elif b_thick == 5:
+                    Tb = 0.312
+                elif b_thick == 6:
+                    Tb = 0.375
+                elif b_thick == 7:
+                    Tb = 0.5
+                elif b_thick  == 8 or b_thick  == 16:
+                    Tb = 0.375
+                elif b_thick == 9:
+                    Tb = 0.656
+                elif b_thick == 10:
+                    Tb = 0.843
+                elif b_thick  == 11 or b_thick  == 17:
+                    Tb = 0.5
+                elif b_thick == 12:
+                    Tb = 1.031
+                elif b_thick == 13:
+                    Tb = 1.218
+                elif b_thick == 14:
+                    Tb = 1.437
+                elif b_thick == 15:
+                    Tb = 1.594
+                Tb = Tb * 0.875
+            # NPS 18
+            if db  == 18:
+                db = 18
+                if b_thick == 1 or b_thick  == 2:
+                    Tb = 0.165
+                elif b_thick == 3 or b_thick  == 4:
+                    Tb = 0.250
+                elif b_thick == 5:
+                    Tb = 0.312
+                elif b_thick == 6:
+                    Tb = 0.437
+                elif b_thick == 7:
+                    Tb = 0.562
+                elif b_thick  == 8 or b_thick  == 16:
+                    Tb = 0.375
+                elif b_thick == 9:
+                    Tb = 0.75
+                elif b_thick == 10:
+                    Tb = 0.927
+                elif b_thick  == 11 or b_thick  == 17:
+                    Tb = 0.5
+                elif b_thick == 12:
+                    Tb = 1.156
+                elif b_thick == 13:
+                    Tb = 1.375
+                elif b_thick == 14:
+                    Tb = 1.562
+                elif b_thick == 15:
+                    Tb = 1.781
+                Tb = Tb * 0.875
+            # NPS 20
+            if db  == 20:
+                db = 20
+                if b_thick == 1 or b_thick  == 2:
+                    Tb = 0.188
+                elif b_thick == 3 or b_thick  == 4:
+                    Tb = 0.250
+                elif b_thick == 5:
+                    Tb = 0.375
+                elif b_thick == 6:
+                    Tb = 0.5
+                elif b_thick == 7:
+                    Tb = 0.593
+                elif b_thick  == 8 or b_thick  == 16:
+                    Tb = 0.375
+                elif b_thick == 9:
+                    Tb = 0.812
+                elif b_thick == 10:
+                    Tb = 1.031
+                elif b_thick  == 11 or b_thick  == 17:
+                    Tb = 0.5
+                elif b_thick == 12:
+                    Tb = 1.28
+                elif b_thick == 13:
+                    Tb = 1.5
+                elif b_thick == 14:
+                    Tb = 1.75
+                elif b_thick == 15:
+                    Tb = 1.968
+                Tb = Tb * 0.875
+            # NPS 22
+            if db  == 22:
+                db = 22
+                if b_thick == 1 or b_thick  == 2:
+                    Tb = 0.188
+                elif b_thick == 3 or b_thick  == 4:
+                    Tb = 0.250
+                elif b_thick == 5:
+                    Tb = 0.375
+                elif b_thick == 6:
+                    Tb = 0.5
+                elif b_thick  == 8 or b_thick  == 16:
+                    Tb = 0.375
+                elif b_thick == 9:
+                    Tb = 0.875
+                elif b_thick == 10:
+                    Tb = 1.125
+                elif b_thick  == 11 or b_thick  == 17:
+                    Tb = 0.5
+                elif b_thick == 12:
+                    Tb = 1.375
+                elif b_thick == 13:
+                    Tb = 1.625
+                elif b_thick == 14:
+                    Tb = 1.875
+                elif b_thick == 15:
+                    Tb = 2.125
+                Tb = Tb * 0.875
+            # NPS 24
+            if db  == 24:
+                db = 24
+                if b_thick == 1 or b_thick  == 2:
+                    Tb = 0.218
+                elif b_thick == 3 or b_thick  == 4:
+                    Tb = 0.250
+                elif b_thick == 5:
+                    Tb = 0.375
+                elif b_thick == 6:
+                    Tb = 0.562
+                elif b_thick  == 7:
+                    Tb = 0.687
+                elif b_thick  == 8 or b_thick  == 16:
+                    Tb = 0.375
+                elif b_thick == 9:
+                    Tb = 0.968
+                elif b_thick == 10:
+                    Tb = 1.218
+                elif b_thick  == 11 or b_thick  == 17:
+                    Tb = 0.5
+                elif b_thick == 12:
+                    Tb = 1.531
+                elif b_thick == 13:
+                    Tb = 1.812
+                elif b_thick == 14:
+                    Tb = 2.062
+                elif b_thick == 15:
+                    Tb = 2.343
+                Tb = Tb * 0.875
+            # NPS 26
+            if db  == 26:
+                db = 26
+                if b_thick == 3 or b_thick  == 4:
+                    Tb = 0.312
+                elif b_thick  == 8 or b_thick  == 16:
+                    Tb = 0.375
+                elif b_thick  == 11 or b_thick  == 17:
+                    Tb = 0.5
+                Tb = Tb * 0.875
+            # NPS 28
+            if db  == 28:
+                db = 28
+                if b_thick == 3 or b_thick  == 4:
+                    Tb = 0.312
+                elif b_thick == 6:
+                    Tb = 0.625
+                elif b_thick  == 8 or b_thick  == 16:
+                    Tb = 0.375
+                elif b_thick  == 11 or b_thick  == 17:
+                    Tb = 0.5
+                Tb = Tb * 0.875
+            # NPS 30
+            if db  == 30:
+                db = 30
+                if b_thick == 1 or b_thick  == 2:
+                    Tb = 0.250
+                elif b_thick == 3 or b_thick  == 4:
+                    Tb = 0.312
+                elif b_thick == 6:
+                    Tb = 0.625
+                elif b_thick  == 8 or b_thick  == 16:
+                    Tb = 0.375
+                elif b_thick  == 11 or b_thick  == 17:
+                    Tb = 0.5
+                Tb = Tb * 0.875
+            # NPS 32
+            if db  == 32:
+                db = 32
+                if b_thick == 3 or b_thick  == 4:
+                    Tb = 0.312
+                elif b_thick == 6:
+                    Tb = 0.625
+                elif b_thick == 7:
+                    Tb = 0.688
+                elif b_thick  == 8 or b_thick  == 16:
+                    Tb = 0.375
+                elif b_thick  == 11 or b_thick  == 17:
+                    Tb = 0.5
+                Tb = Tb * 0.875
+            # NPS 34
+            if db  == 34:
+                db = 34
+                if b_thick == 3 or b_thick  == 4:
+                    Tb = 0.312
+                elif b_thick == 6:
+                    Tb = 0.625
+                elif b_thick == 7:
+                    Tb = 0.688
+                elif b_thick  == 8 or b_thick  == 16:
+                    Tb = 0.375
+                elif b_thick  == 11 or b_thick  == 17:
+                    Tb = 0.5
+                Tb = Tb * 0.875
+            # NPS 36
+            if db  == 36:
+                db = 36
+                if b_thick == 3 or b_thick  == 4:
+                    Tb = 0.312
+                elif b_thick  == 8 or b_thick  == 16:
+                    Tb = 0.375
+                elif b_thick  == 11 or b_thick  == 17:
+                    Tb = 0.5
+                Tb = Tb * 0.875
+            # NPS 40
+            if db  >= 40:
+                if b_thick == 16:
+                    Tb = 0.375
+                elif b_thick == 17:
+                    Tb = 0.5
+                elif b_thick == 18:
+                    Tb = 1
+                Tb = Tb * 0.875
+
+
+            # If this condition is not satisfied
+            # "Tb not referenced" error occurs
+            B = float(request.POST['BAngle'])
+            d1 = (db - 2*(Tb-c))/math.sin(math.radians(B))
+            d2 = (Tb - c) + (th-c) + d1/2
+            if d2 > d1:
+                d2 = d2
+            else:
+                d2 = d1
+            # min header and branch pressure design thickness
+            BMaterial = float(request.POST['BranchMaterial'])
+            Temp = float(request.POST['temp'])
+            Sb = float(request.POST['BStress'])
+            Sh = float(request.POST['HStress'])
+            if Temp < 1500:
+                W = 1
+            else:
+                W = 0.5
+            Y = 0.4
+            HeadMaterial = int(request.POST['HeadMaterial'])
+            BranchConstruction = int(request.POST['BranchConstruction'])
+            HeadConstruction = int(request.POST['HeadConstruction'])
+            if HeadConstruction or BranchConstruction == 1:
+                Eh = Eb = 1
+            elif HeadConstruction or BranchConstruction == 2:
+                Eh = Eb = 0.95
+            elif HeadConstruction or BranchConstruction == 3:
+                Eh = Eb = 0.85
+            elif HeadConstruction or BranchConstruction == 4:
+                Eh = Eb = 0.6
+            P = float(request.POST['BRpsi'])
+            # Min header pressure design thickness
+            thp = (P * dh)/(2*((Sh*W*Eh)+(P*Y)))
+            # Min branch pressure design thickness
+            tbp = (P * db)/(2*((Sb*W*Eb)+(P*Y)))
+            # thp = 0.1251969
+            # Required reinforcement area  
+            A1 = thp * d1 * (2 - math.sin(math.radians(B))) 
+            # Area resulting from excess thickness in header pipe 
+            A2 = (2*d2 - d1)*(th - thp - c) 
+            # Height of reinforcement zone outside run pipe 
+            # Minimum and available thicknss of header
+            Trm = float(request.POST['min_r'])
+            Trm_unit = str(request.POST['min_r_unit'])
+            Tra = float(request.POST['avail_r'])
+            Tra_unit = str(request.POST['avail_r_unit'])
+            if Trm_unit == "mm":
+                Tr = Trm/25.4
+            elif Trm_unit == inch:
+                Tr = Trm
+            L41 = 2.5 * (th - c)
+            L42 = 2.5*(Tb - c) + Tr 
+            if L41 < L42:
+                L4 = L41
+            else:
+                L4 = L42
+            # Area resulting from excess thickness in branch pipe
+            A3 = 2*L4*(Tb - tbp - c)/math.sin(math.radians(B))
+            d1 = round(d1, 2)
+
+            return render(request, "index.html", {'test':d1, 'test1':thp, 'test2':A1})
+        
+        else:
+            # Redirect back to the same page if the data
+            # was invalid
+            return render(request, "index.html", {'form':details})
+    else:
+        form = ReinforcementForm()
+        return render(request, "index.html", {'form':form})

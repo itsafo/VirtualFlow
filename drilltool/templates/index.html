@@ -11,7 +11,7 @@
                         <h5 class=" wow fadeInUp animated">Welcome to our</h5>
                         <h3 class=" wow fadeInUp animated" data-wow-delay="0.5s">MODERN, EFFICIENT FLOW ANALYTICS TOOL</h3>
                         <p class=" wow fadeInUp animated" data-wow-delay="0.8s">Our flow professional tool will help you ease your flow line challenges.</p>
-                        <a class=" wow fadeInUp animated" data-wow-delay="1s" href="#dashboard">Quick Analysis</a>
+                        <a class=" wow fadeInUp animated" data-wow-delay="1s" href="#driller-dashboard">Quick Analysis</a>
                    </div>
                 </div>
             </div>
@@ -31,7 +31,7 @@
 
     <section></section>
     <!-- Professional Builde -->
-    <section id="dashboard" class="row bg-black">
+    <section id="driller-dashboard" class="row bg-black">
         <div class="container">
             <div class="tittle wow fadeInUp">
                 <h2 style="color:white">DRILLER'S DASHBOARD</h2>
@@ -108,7 +108,7 @@
                             <div class="form-group form-floating-label">
                                 <input id="inputFloatingLabel2" type="text" name="drillcollarl" class="form-control input-solid" required>
                                 <label for="inputFloatingLabel2" class="placeholder">Drill collar length (ft) :</label>
-                            </div>                                                       
+                            </div>
                         </div>
                     </div>  
                     <div class="col-md-4">
@@ -166,10 +166,443 @@
                         </div>     
                     </div>                         
                     <div class="col-md-4">
-                        <input type="submit" name="">                       
+                        <input type="submit" name="">  
                     </div>
                 </div>       
             </form>            
+        </div>             
+    </section>
+    <!-- End Professional Builde -->
+
+    <!-- Professional Builder -->
+    <section id="piper-dashboard" class="row bg-primary">
+        <div class="container">
+            <div class="tittle wow fadeInUp">
+                <h2 style="color:white">PIPER'S DASHBOARD</h2>
+                <h3 style="color:white">Branch reinforcement calculation</h3>
+                <br>
+            </div>
+            <!-- Header Pipe -->
+            <form action="reinforcement" method="POST">
+                {% csrf_token %}
+                <h3 style="color:white">Header Specifications</h3>
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="card" style="background:#484848">
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <span class="input-group-text" id="basic-addon3">MOC :</span>
+                                    </div>
+                                    <div class="input-group">
+                                        <select class="form-control"  name="HeadMaterial" id="moc">
+                                          <option value="1">API 5L Grade A</option>
+                                          <option value="2">API 5L Grade B</option>
+                                          <option value="3">ASTM A53 Grade A</option>
+                                          <option value="4">ASTM A53 Grade B</option>
+                                          <option value="5">ASTM A106 Grade A</option>
+                                          <option value="6">ASTM A106 Grade B</option>
+                                          <option value="7">ASTM A333 Grade 6</option>
+                                          <option value="8">ASTM A333 Grade 9</option>
+                                          <option value="9">ASTM A312 TP 304</option>
+                                          <option value="10">ASTM A312 TP 304H</option> 
+                                          <option value="11">ASTM A312 TP 304L</option> 
+                                          <option value="12">ASTM A312 TP 316</option>
+                                          <option value="13">ASTM A312 TP 316H</option>
+                                          <option value="14">ASTM A312 TP 316L</option>
+                                          <option value="15">ASTM A312 TP 317</option>
+                                          <option value="16">ASTM A312 TP 347</option>   
+                                          <option value="17">ASTM A312 TP 347H</option>
+                                          <option value="18">ASTM A312 TP 348</option>
+                                          <option value="19">ASTM A312 TP 348H</option>
+                                        </select>  
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <span class="input-group-text" id="basic-addon3">NPS :</span>
+                                    </div>
+                                    <div class="input-group">
+                                        <input id="inputFloatingLabel2" type="text" name="hnpd" class="form-control input-solid" required>   
+                                    </div>
+                                    <div class="input-group-btn">
+                                        <select class="form-control" name="hnpd_unit" id="hnpd_unit">
+                                            <option value="mm">mm</option>
+                                            <option value="inch">inch</option>
+                                        </select>   
+                                    </div>
+                                </div>                                 
+                            </div> 
+                        </div>
+                    </div>
+                    <div class="col-md-5 col-lg-4">
+                        <div class="card" style="background:#484848">
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <span class="input-group-text" id="basic-addon3">Wall Thickness :</span>
+                                    </div>
+                                    <div class="input-group-append">
+                                        <select for="basic-addon3" class="form-control" name="h_thick">
+                                            <option value="1">Sch 5</option>
+                                            <option value="2">Sch 5S</option>
+                                            <option value="3">Sch 10</option>
+                                            <option value="4">Sch 10S</option>    
+                                            <option value="5">Sch 20</option>
+                                            <option value="6">Sch 30</option>
+                                            <option value="7">Sch 40</option>
+                                            <option value="8">Sch 40S</option>
+                                            <option value="9">Sch 60</option>
+                                            <option value="10">Sch 80</option>
+                                            <option value="11">Sch 80S</option> 
+                                            <option value="12">Sch 100</option>
+                                            <option value="13">Sch 120</option>
+                                            <option value="14">Sch 140</option>
+                                            <option value="15">Sch 160</option>
+                                            <option value="16">STD</option>
+                                            <option value="17">XS</option>
+                                            <option value="18">XXS</option>
+                                        </select>   
+                                    </div>
+                                </div>
+                            </div>    
+                            <div class="form-group form-inline">
+                                <div class="input-group">
+                                    <div for="inlineinput" class="input-group-addon">
+                                        <span class="input-group-text" id="basic-addon3">Corrosion allowance :</span>
+                                    </div>
+                                    <input id="inlineinput" type="text" name="ch" class="form-control input-solid" required>  
+                                    <div class="input-group-btn">
+                                        <select class="form-control" name="h_ca_unit" id="h_ca_unit">
+                                            <option value="mm">mm</option>
+                                            <option value="inch">inch</option>
+                                        </select>   
+                                    </div>    
+                                </div>
+                            </div>    
+                            <div class="form-group form-inline">
+                                <div class="input-group">
+                                    <div for="inlineinput" class="input-group-addon">
+                                        <span class="input-group-text" id="basic-addon3">Stress allowance :</span>
+                                    </div>
+                                    <input id="inlineinput" type="text" name="HStress" class="form-control input-solid" required>  
+                                    <div class="input-group-btn">
+                                        <select class="form-control" name="h_ca_unit" id="h_ca_unit">
+                                            <option value="mm">psi</option>
+                                            <option value="inch">bar</option>
+                                        </select>   
+                                    </div>    
+                                </div>
+                            </div>                
+                        </div>
+                    </div>  
+                    <div class="col-md-4">
+                        <div class="card" style="background:#484848">
+                            <div class="form-group form-inline">
+                                <div class="input-group">
+                                    <div for="inlineinput" class="input-group-addon">
+                                        <span class="input-group-text" id="basic-addon3">Mill Tolerance :</span>
+                                    </div>
+                                    <input id="inlineinput" type="text" name="MillTolerance" class="form-control input-solid" required>  
+                                    <div class="input-group-btn">
+                                        <select class="form-control" name="h_mt_unit" id="h_mt_unit">
+                                            <option value="%">%</option>
+                                            <option value="mm">mm</option>
+                                            <option value="inch">inch</option>
+                                        </select>   
+                                    </div>    
+                                </div>
+                            </div>    
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <span class="input-group-text" id="basic-addon3">Construction :</span>
+                                    </div>
+                                    <div class="input-group-append">
+                                        <select for="inputFloatingLabel2" class="form-control" name="HeadConstruction">
+                                          <option value="1">Seamless</option>
+                                          <option value="2">EFW</option>
+                                          <option value="3">ERW</option>
+                                          <option value="4">FBW</option>
+                                        </select>   
+                                    </div>
+                                </div>        
+                            </div>                 
+                        </div>     
+                    </div>                                        
+                </div> 
+                <!-- End of Header -->
+
+                <!-- Branch Pipe -->
+                <h3 style="color:white">Branch Specifications</h3>
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="card" style="background:#484848">
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <span class="input-group-text" id="basic-addon3">MOC :</span>
+                                    </div>
+                                    <div class="input-group">
+                                        <select class="form-control" name="BranchMaterial" id="BranchMaterial">
+                                          <option value="1">API 5L Grade A</option>
+                                          <option value="2">API 5L Grade B</option>
+                                          <option value="3">ASTM A53 Grade A</option>
+                                          <option value="4">ASTM A53 Grade B</option>
+                                          <option value="5">ASTM A106 Grade A</option>
+                                          <option value="6">ASTM A106 Grade B</option>
+                                          <option value="7">ASTM A333 Grade 6</option>
+                                          <option value="8">ASTM A333 Grade 9</option>
+                                          <option value="9">ASTM A312 TP 304</option>
+                                          <option value="10">ASTM A312 TP 304H</option> 
+                                          <option value="11">ASTM A312 TP 304L</option> 
+                                          <option value="12">ASTM A312 TP 316</option>
+                                          <option value="13">ASTM A312 TP 316H</option>
+                                          <option value="14">ASTM A312 TP 316L</option>
+                                          <option value="15">ASTM A312 TP 317</option>
+                                          <option value="16">ASTM A312 TP 347</option>   
+                                          <option value="17">ASTM A312 TP 347H</option>
+                                          <option value="18">ASTM A312 TP 348</option>
+                                          <option value="19">ASTM A312 TP 348H</option>
+                                        </select>  
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <span class="input-group-text" id="basic-addon3">NPS :</span>
+                                    </div>
+                                    <div class="input-group">
+                                        <input id="inputFloatingLabel2" type="text" name="bnpd" class="form-control input-solid" required>   
+                                    </div>
+                                    <div class="input-group-btn">
+                                        <select class="form-control" name="bnpd_unit" id="bnpd_unit">
+                                            <option value="mm">mm</option>
+                                            <option value="inch">inch</option>
+                                        </select>   
+                                    </div>
+                                </div>                                 
+                            </div> 
+                        </div>
+                    </div>
+                    <div class="col-md-5 col-lg-4">
+                        <div class="card" style="background:#484848">
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <span class="input-group-text" id="basic-addon3">Wall Thickness :</span>
+                                    </div>
+                                    <div class="input-group-append">
+                                        <select for="basic-addon3" class="form-control" name="b_thick">
+                                            <option value="1">Sch 5</option>
+                                            <option value="2">Sch 5S</option>
+                                            <option value="3">Sch 10</option>
+                                            <option value="4">Sch 10S</option>    
+                                            <option value="5">Sch 20</option>
+                                            <option value="6">Sch 30</option>
+                                            <option value="7">Sch 40</option>
+                                            <option value="8">Sch 40S</option>
+                                            <option value="9">Sch 60</option>
+                                            <option value="10">Sch 80</option>
+                                            <option value="11">Sch 80S</option> 
+                                            <option value="12">Sch 100</option>
+                                            <option value="13">Sch 120</option>
+                                            <option value="14">Sch 140</option>
+                                            <option value="15">Sch 160</option>
+                                            <option value="16">STD</option>
+                                            <option value="17">XS</option>
+                                            <option value="18">XXS</option>
+                                        </select>   
+                                    </div>
+                                </div>
+                            </div>    
+                            <div class="form-group form-inline">
+                                <div class="input-group">
+                                    <div for="inlineinput" class="input-group-addon">
+                                        <span class="input-group-text" id="basic-addon3">Corrosion allowance :</span>
+                                    </div>
+                                    <input id="inlineinput" type="text" name="cb" class="form-control input-solid" required>  
+                                    <div class="input-group-btn">
+                                        <select class="form-control" name="h_ca_unit" id="h_ca_unit">
+                                            <option value="mm">mm</option>
+                                            <option value="inch">inch</option>
+                                        </select>   
+                                    </div>    
+                                </div>
+                            </div>    
+                            <div class="form-group form-inline">
+                                <div class="input-group">
+                                    <div for="inlineinput" class="input-group-addon">
+                                        <span class="input-group-text" id="basic-addon3">Stress allowance :</span>
+                                    </div>
+                                    <input id="inlineinput" type="text" name="BStress" class="form-control input-solid" required>  
+                                    <div class="input-group-btn">
+                                        <select class="form-control" name="h_ca_unit" id="h_ca_unit">
+                                            <option value="mm">psi</option>
+                                            <option value="inch">bar</option>
+                                        </select>   
+                                    </div>    
+                                </div>
+                            </div>               
+                        </div>
+                    </div>  
+                    <div class="col-md-4">
+                        <div class="card" style="background:#484848">
+                            <div class="form-group form-inline">
+                                <div class="input-group">
+                                    <div for="inlineinput" class="input-group-addon">
+                                        <span class="input-group-text" id="basic-addon3">Mill Tolerance :</span>
+                                    </div>
+                                    <input id="inlineinput" type="text" name="cb" class="form-control input-solid" required>  
+                                    <div class="input-group-btn">
+                                        <select class="form-control" name="MillTolerance" id="MillTolerance">
+                                            <option value="%">%</option>
+                                            <option value="mm">mm</option>
+                                            <option value="inch">inch</option>
+                                        </select>   
+                                    </div>    
+                                </div>
+                            </div>     
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <span class="input-group-text" id="basic-addon3">Construction :</span>
+                                    </div>
+                                    <div class="input-group-append">
+                                        <select for="inputFloatingLabel2" class="form-control" name="BranchConstruction">
+                                          <option value="1">Seamless</option>
+                                          <option value="2">EFW</option>
+                                          <option value="3">ERW</option>
+                                          <option value="4">FBW</option>
+                                        </select>   
+                                    </div>
+                                </div>        
+                            </div>                 
+                        </div>     
+                    </div>                                        
+                </div>
+                 <!-- End of Pipe Branch -->
+
+                 <!-- Common Room -->
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="card" style="background:#484848">
+                            <div class="form-group form-floating-label">
+                                <input id="inputFloatingLabel2" type="text" name="BRpsi" class="form-control input-solid" required>
+                                <label for="inputFloatingLabel2" class="placeholder">Design Pressure :</label>
+                            </div>    
+                            <div class="form-group form-floating-label">
+                                <input id="inputFloatingLabel2" type="text" name="temp" class="form-control input-solid" required>
+                                <label for="inputFloatingLabel2" class="placeholder">Downhole Temperature :</label>
+                            </div>                          
+                        </div>     
+                    </div> 
+                    <div class="col-md-4">
+                        <div class="card" style="background:#484848">
+                            <div class="form-group form-floating-label">
+                                <input id="BAngle" type="text" name="BAngle" class="form-control input-solid" required>
+                                <label for="inputFloatingLabel2" class="placeholder">Branch Angle :</label>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <span class="input-group-text" id="basic-addon3">Minimum R-Pad Thickness :</span>
+                                    </div>
+                                    <div class="input-group">
+                                        <input id="inputFloatingLabel2" type="text" name="min_r" class="form-control input-solid" required>   
+                                    </div>
+                                    <div class="input-group-btn">
+                                        <select class="form-control" name="min_r_unit" id="min_r_unit">
+                                            <option value="mm">mm</option>
+                                            <option value="inch">inch</option>
+                                        </select>   
+                                    </div>
+                                </div>   
+                            </div>                            
+                      
+                        </div>     
+                    </div>                     
+                    <div class="col-md-4">
+                        <div class="card" style="background:#484848">
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <span class="input-group-text" id="basic-addon3">Available R-Pad Thickness :</span>
+                                    </div>
+                                    <div class="input-group">
+                                        <input id="inputFloatingLabel2" type="text" name="avail_r" class="form-control input-solid" required>   
+                                    </div>
+                                    <div class="input-group-btn">
+                                        <select class="form-control" name="avail_r_unit" id="avail_r_unit">
+                                            <option value="mm">mm</option>
+                                            <option value="inch">inch</option>
+                                        </select>   
+                                    </div>
+                                </div>
+                            </div>
+                        </div>   
+                    </div>                         
+                    <div class="col-md-4" style="color: black">
+                        <input type="submit" name="">
+                    </div>
+                </div>       
+            </form>  
+
+            <!-- Results -->
+            <div class="row">
+                <div class="col-md-4"> 
+                    <div class="card-body">
+                        <table class="table"  style="color: white">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <div> 
+                                        Label :     
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div>Results Panel
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Minimum header required thickness:
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div><label class="btn btn-success">{{ test }}  psi</label>   
+                                        </div>
+                                    </td>   
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div>Minimum branch required thickness:
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div>
+                                        <label class="btn btn-success">{{ test1 }} psi</label>
+                                        </div>  
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Is reinforcement required? 
+                                    </td>
+                                    <td>
+                                        <label class="btn btn-success">{{ test2 }} ppg</label>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>                  
+                    
+                </div>   
+                 
         </div>             
     </section>
     <!-- End Professional Builde -->
@@ -179,7 +612,7 @@
         <div class="container">
             <div class="tittle wow fadeInUp">
                 <h2>ABOUT US</h2>
-                <h4>Drilltech is a developing service for mobile oil and gas technical analysis founded in 2019 by Abdul Afolabi</h4>
+                <h4>Drilltech is a developing service for mobile oil and gas technical analysis founded in 2019 by Abdul Afolabi {{ test }}</h4>
             </div>
             <div class="row about_row">
                 <div class="who_we_area col-md-7 col-sm-6">

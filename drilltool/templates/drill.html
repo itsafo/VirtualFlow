@@ -10,70 +10,114 @@
                 <h4 style="color:white">Perform your mud rheology analysis here</h4>
                 <br>
             </div>
-            <form action="rheology" method="POST">
-                {% csrf_token %}
-                <div class="row">
-                	<div class="col-md-4"  style="color: white">
-				        <div>
-				        	Result : {{ result }} | 
-				        	Model : {{ model }}
-				        	<br>
-				        	Total Annular Pressure Loss:
-		                    <label class="btn btn-success">{{ tap }} psi</label> 	
-				        </div>
-				        <br>  
-				        <div>
-				        	Total Internal Pressure Loss:
-		                    <label class="btn btn-success">{{ tip }} psi</label>	
-				        </div>
-				        <br>   
-				        <div>
-				        	Parasitic Loss:
-		                    <label class="btn btn-success">{{ tpl }} psi</label>	
-				        </div>
-				        <br> 				         
-				        <div>
-				        	Hydraulic HP Pump Pressure:
-		                    <label class="btn btn-success">{{ tpph }} psi</label>	
-				        </div>  
-				        <br>
-				        <div>
-				        	Hydraulics Bit Size (1/32 in):
-		                    <label class="btn btn-success">{{ hhpbs }}</label>	
-				        </div> 	
-				        <br>			        
-				        <div>
-				        	Jet Impact Pump Pressure:
-		                    <label class="btn btn-success">{{ tppj }} psi</label>	
-				        </div>
-				        <br>  
-				        <div>
-				        	Jet Impact Bit Size (1/32 in):
-		                    <label class="btn btn-success">{{ jifbs }}</label>	
-				        </div> 
-				        <br> 
-				        <div>
-				        	Equivalent Circulating Density:
-		                    <label class="btn btn-success">{{ ecd }} ppg</label>	
-				        </div>            		
-                	</div>
-		            <div class="col-md-6">
-		                <div class="card  bg-black">
-		                    <div class="card-header">
-		                        <div class="card-title" style="color: white">Rheology Visualization:</div>
-		                    </div>
-		                    <div class="card-body">
-		                        <div class="chart-container">
-		                            <canvas id="multipleLineChart" height="400"></canvas>
-		                        </div>
-		                    </div>
-		                </div>
-		            </div> 
-                   <div class="nav nav-pills">
-                        <a class="wow fadeInUp animated" data-wow-delay="1s" href="{% url 'home' %}">Go back to mud/well data</a>
-                   </div>	                           	
-                </div>       
-            </form>            
+            <div class="row">
+            	<div class="col-md-4"> 
+	            	<div class="card-body">
+	            		<table class="table"  style="color: white">
+	            			<tbody>
+		            			<tr>
+		            				<td>
+		            					<div> 
+							        	Model : 	
+							        	</div>
+		            				</td>
+		            				<td>
+		            					<div>{{ model }} {{ result }}
+							        	</div>
+		            				</td>
+		            			</tr>
+		            			<tr>
+		            				<td>
+							        	Total Annular Pressure Loss:
+							        	</div>
+		            				</td>
+		            				<td>
+		            					<div><label class="btn btn-success">{{ tap }} psi</label> 	
+							        	</div>
+		            				</td>	
+		            			</tr>
+		            			<tr>
+		            				<td>
+		            					<div>Total Internal Pressure Loss:
+						        		</div>
+		            				</td>
+		            				<td>
+		            					<div>
+						        		<label class="btn btn-success">{{ tip }} psi</label>
+						        		</div>	
+		            				</td>
+		            			</tr>
+		            			<tr>
+		            				<td>
+		            					<div>
+								        	Parasitic Loss:	
+								        </div>
+		            				</td>
+		            				<td>
+		            					<label class="btn btn-success">{{ tpl }} psi</label>
+		            				</td>
+		            			</tr>
+		            			<tr>
+		            				<td>
+		            					Hydraulic HP Pump Pressure:
+		            				</td>
+		            				<td>
+		            					<label class="btn btn-success">{{ tpph }} psi</label>
+		            				</td>
+		            			</tr>
+		            			<tr>
+		            				<td>
+		            					Hydraulics Bit Size (1/32 in):
+		            				</td>
+		            				<td>
+		            					<label class="btn btn-success">{{ hhpbs }}</label>
+		            				</td>
+		            			</tr>
+		            			<tr>
+		            				<td>
+		            					Jet Impact Pump Pressure:
+		            				</td>
+		            				<td>
+		            					<label class="btn btn-success">{{ tppj }} psi</label>
+		            				</td>
+		            			</tr>
+		            			<tr>
+		            				<td>
+		            					Jet Impact Bit Size (1/32 in):
+		            				</td>
+		            				<td>
+		            					<label class="btn btn-success">{{ jifbs }}</label>
+		            				</td>
+		            			</tr>
+		            			<tr>
+		            				<td>
+		            					Equivalent Circulating Density:
+		            				</td>
+		            				<td>
+		            					<label class="btn btn-success">{{ ecd }} ppg</label>
+		            				</td>
+		            			</tr>
+	            			</tbody>
+	            		</table>
+	            	</div>            		
+            		
+            	</div>
+	            <div class="col-md-6">
+	                <div class="card  bg-black">
+	                    <div class="card-header">
+	                        <div class="card-title" style="color: white">Rheology Visualization:</div>
+	                    </div>
+	                    <div class="card-body">
+	                        <div class="chart-container">
+	                            <canvas id="multipleLineChart" height="400"></canvas>
+	                        </div>
+	                    </div>
+	                </div>
+	            </div> 
+               <div class="nav nav-pills">
+                    <a class="wow fadeInUp animated" data-wow-delay="1s" href="{% url 'home' %}">Go back to mud/well data</a>
+               </div>
+            </div>	              
         </div>             
     </section>
 {% endblock %}

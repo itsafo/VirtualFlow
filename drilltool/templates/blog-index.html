@@ -88,26 +88,16 @@
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Home</a>
                             <ul class="dropdown-menu">
                                 <li><a href="{% url 'home' %}">Home</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown submenu">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dashboard</a>
-                            <ul class="dropdown-menu other_dropdwn">
-                                <li><a href="{% url 'home' %}#driller-dashboard">Driller</a></li>
-                                <li><a href="{% url 'home' %}#piper-dashboard">Flowline</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown submenu">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">About Us</a>
-                            <ul class="dropdown-menu other_dropdwn">
+                                <li><a href="{% url 'home' %}#driller-dashboard">Driller Dashboard</a></li>
+                                <li><a href="{% url 'home' %}#piper-dashboard">Flowline Dashboard</a></li>
                                 <li><a href="{% url 'home' %}#more-aboutus">About Us</a></li>
                             </ul>
-                        </li>   
+                        </li>
                         <li class="dropdown submenu">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">References</a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Categories</a>
                             <ul class="dropdown-menu other_dropdwn">
-                                <li><a href="{% url 'refnote' %}">Mud Optimization</a></li>
-                                <li><a href="{% url 'home' %}#more-aboutus">Flowline Optimization</a></li>
+                                <li><a href="{% url 'refnote' %}">Pipeline</a></li>
+                                <li><a href="{% url 'home' %}#more-aboutus">Fluid flow</a></li>
                             </ul>
                         </li>
                         <li class="dropdown submenu">
@@ -117,7 +107,6 @@
                                 <li><a href="{% url 'blog' %}">Main Blog</a></li>
                             </ul>
                         </li>
-                        <li><a href="#contact-us">Contact</a></li>
                         <li><a href="#" class="nav_searchFrom"><i class="fa fa-search"></i></a></li>
                     </ul>
                 </div><!-- /.navbar-collapse -->
@@ -126,9 +115,45 @@
     </nav>
 	<!-- End Header_Area -->
 
-{% block content %} 
-
-{% endblock %}
+    <!-- Landing Page Area -->
+    <section class="our_achievments_area" data-stellar-background-ratio="0.3">
+        <div class="container">
+            <div>
+                <div class="tittle wow fadeInUp">
+                    <h2>Our Achievments</h2>
+                    <h4>Lorem Ipsum is simply dummy text of the printing and typesetting industry</h4>
+                </div>
+            </div>
+            
+            <div class="achievments_row row">
+                <div class="tittle wow fadeInUp">
+                    <h2>Our Latest Blog</h2>
+                    <h4>Lorem Ipsum is simply dummy text of the printing and typesetting industry</h4>
+                </div>
+                <div class="row latest_blog">
+                    <div class="col-md-4 col-sm-6 blog_content">
+                        <img src="static/drilltool/images/blog/lb-1.jpg" alt="">
+                        <a href="#" class="blog_heading">Our Latest Project</a>
+                        <h4><small>by  </small><a href="#">Emran Khan</a><span>/</span><small>ON </small> October 15, 2016</h4>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam sagittis iaculis velit in tristique. Curabitur ac urna urna. Sed sollicitudin at nisi sed accumsan... <a href="#">Read More</a></p>
+                    </div>
+                    <div class="col-md-4 col-sm-6 blog_content">
+                        <img src="static/drilltool/images/blog/lb-2.jpg" alt="">
+                        <a href="#" class="blog_heading">Our Latest Project</a>
+                        <h4><small>by  </small><a href="#">Prodip Ghosh</a><span>/</span><small>ON </small> October 15, 2016</h4>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam sagittis iaculis velit in tristique. Curabitur ac urna urna. Sed sollicitudin at nisi sed accumsan... <a href="#">Read More</a></p>
+                    </div>
+                    <div class="col-md-4 col-sm-6 blog_content">
+                        <img src="static/drilltool/images/blog/lb-3.jpg" alt="">
+                        <a href="#" class="blog_heading">Our Latest Project</a>
+                        <h4><small>by  </small><a href="#">Prodip Ghosh</a><span>/</span><small>ON </small> October 15, 2016</h4>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam sagittis iaculis velit in tristique. Curabitur ac urna urna. Sed sollicitudin at nisi sed accumsan... <a href="#">Read More</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End of Landing Page Area -->
 
 
     <!-- Footer Area -->
