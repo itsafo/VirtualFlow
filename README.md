@@ -51,10 +51,15 @@ $ # Access the web app in browser: http://127.0.0.1:8000/
 + Heroku
 
 #### Screenshot
-![](static/images/project.png)
-
-
+### [Drillers Dashboard](https://virtualflow.herokuapp.com/)
+![Drillers Dashboard](https://github.com/itsafo/VirtualFlow/blob/master/static/drilltool/images/Drillers_Dashboard.png)
+### [Drillers Dashboard with values](https://virtualflow.herokuapp.com/)
+![Drillers Dashboard](https://github.com/itsafo/VirtualFlow/blob/master/static/drilltool/images/Drillers_Dashboard1.png)
+### [Drilling Result](https://virtualflow.herokuapp.com/)
+![Drilling Result](https://github.com/itsafo/VirtualFlow/blob/master/static/drilltool/images/Drilling_result.png)
+### [Pipe Reignforcement](https://virtualflow.herokuapp.com/)
+![Pipe Reignforcement](https://github.com/itsafo/VirtualFlow/blob/master/static/drilltool/images/Pipe_reignforcement.png)
 
 
 #### Ref
-Referenced git repo: <a href="https://github.com/prem-creator/heart-detector" target="_blank">AI Fusion - prem creator</a>
+
